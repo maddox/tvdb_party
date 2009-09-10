@@ -4,37 +4,37 @@ h2. What?
 
 TvdbParty is a simple Ruby library to talk to thetvdb.com database.
 
-h3. How?
+h2. How?
 
-# set up the client
+set up the client
 <code>tvdb = TvdbParty::Search.new("YOURAPIKEY")
 
-# search for your series
+search for your series
 <code>results = tvdb.search('the west wing')</code>
 
-# get the series
+get the series
 <code>west_wing = tvdb.get_series_by_id(results["seriesid"])</code>
 <code>puts west_wing.name</code>
 => The West Wing
 
-# get an episode
+get an episode
 <code>episode_22 = west_wing.get_episode(1, 22)</code>
 <code>puts episode_22.name</code>
 => What Kind of Day Has It Been?
 
-# get series fanart - pass in your language
+get series fanart - pass in your language
 <code>puts west_wing.fanart('en').first.url</code>
 => http://thetvdb.com/banners/fanart/original/72521-2.jpg
 
-# get series posters
+get series posters
 <code>puts west_wing.posters('en').first.url</code>
 => http://thetvdb.com/banners/posters/72521-1.jpg
 
-# get series banners
+get series banners
 <code>puts west_wing.series_banners('en').first.url</code>
 => http://thetvdb.com/banners/graphical/189-g.jpg
 
-# get season posters
+get season posters
 <code>puts west_wing.season_posters(2, 'en').first.url</code>
 => http://thetvdb.com/banners/seasons/72521-2.jpg
 
