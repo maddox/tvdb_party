@@ -5,12 +5,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "tvdb_party"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Simple Ruby library to talk to thetvdb.com's api}
+    gem.description = %Q{Simple Ruby library to talk to thetvdb.com's api}
     gem.email = "jon@jonsthoughtsoneverything.com"
     gem.homepage = "http://github.com/maddox/tvdb_party"
     gem.authors = ["Jon Maddox"]
     gem.add_development_dependency "thoughtbot-shoulda"
+    gem.dependency "httparty"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
