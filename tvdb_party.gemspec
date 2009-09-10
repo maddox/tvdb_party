@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tvdb_party}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jon Maddox"]
@@ -22,13 +22,15 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.textile",
      "Rakefile",
+     "VERSION",
      "lib/tvdb_party.rb",
      "lib/tvdb_party/banner.rb",
      "lib/tvdb_party/episode.rb",
      "lib/tvdb_party/search.rb",
      "lib/tvdb_party/series.rb",
      "test/test_helper.rb",
-     "test/tvdb_party_test.rb"
+     "test/tvdb_party_test.rb",
+     "tvdb_party.gemspec"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/maddox/tvdb_party}
