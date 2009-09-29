@@ -34,7 +34,7 @@ module TvdbParty
       when Array
         response["Banners"]["Banner"].map{|result| Banner.new(result)}
       when Hash
-        Banner.new(response["Banners"]["Banner"])
+        [Banner.new(response["Banners"]["Banner"])]
       else
         []
       end

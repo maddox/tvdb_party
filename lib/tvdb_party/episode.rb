@@ -8,7 +8,7 @@ module TvdbParty
       @number = options["EpisodeNumber"]
       @name = options["EpisodeName"]
       @overview = options["Overview"]
-      @air_date = Date.parse(options["FirstAired"])
+      @air_date = Date.parse(options["FirstAired"]) if options["FirstAired"]
       @thumb = "http://thetvdb.com/banners/" + options["filename"] if options["filename"].to_s != ""
       @guest_stars = options["GuestStars"][1..-1].split("|")
       @director = options["Director"]
