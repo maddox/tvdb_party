@@ -17,7 +17,7 @@ module TvdbParty
       @genres = options["Genre"][1..-1].split("|")
       @actors = options["Actors"][1..-1].split("|")
 
-      if options["Rating"].size > 0
+      if options["Rating"] && options["Rating"].size > 0
         @rating = options["Rating"].to_f
       else
         @rating = 0
