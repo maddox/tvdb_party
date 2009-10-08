@@ -4,6 +4,14 @@ h2. What?
 
 TvdbParty is a simple Ruby library to talk to thetvdb.com database.
 
+h2. Install
+
+sudo gem install tvdb_party
+
+TvdbParty is hosted on Gemcutter
+
+gem install tvdb_party
+
 h2. How?
 
 set up the client

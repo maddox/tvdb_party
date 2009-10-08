@@ -7,11 +7,11 @@ begin
     gem.name = "tvdb_party"
     gem.summary = %Q{Simple Ruby library to talk to thetvdb.com's api}
     gem.description = %Q{Simple Ruby library to talk to thetvdb.com's api}
-    gem.email = "jon@jonsthoughtsoneverything.com"
+    gem.email = "jon@mustacheinc.com"
     gem.homepage = "http://github.com/maddox/tvdb_party"
     gem.authors = ["Jon Maddox"]
     gem.add_development_dependency "thoughtbot-shoulda"
-    gem.add_dependency('httparty', '>= 0.4.4')
+    gem.add_dependency('httparty', '>= 0.4.3')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
