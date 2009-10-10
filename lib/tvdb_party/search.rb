@@ -20,7 +20,7 @@ module TvdbParty
 
     def get_series_by_id(series_id)
       response = self.class.get("/#{@api_key}/series/#{series_id}/en.xml")
-      if response["Data"]["Series"]
+      if response["Data"] && response["Data"]["Series"]
         Series.new(self, response["Data"]["Series"])
       else
         nil
@@ -29,7 +29,7 @@ module TvdbParty
     
     def get_episode(series, season_number, episode_number)
       response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/en.xml")
-      if response["Data"]["Episode"]
+      if response["Data"] && response["Data"]["Episode"]
         Episode.new(response["Data"]["Episode"])
       else
         nil
