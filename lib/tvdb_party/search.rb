@@ -20,12 +20,20 @@ module TvdbParty
 
     def get_series_by_id(series_id)
       response = self.class.get("/#{@api_key}/series/#{series_id}/en.xml")
-      Series.new(self, response["Data"]["Series"])
+      if response["Data"]["Series"]
+        Series.new(self, response["Data"]["Series"])
+      else
+        nil
+      end
     end
     
     def get_episode(series, season_number, episode_number)
       response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/en.xml")
-      Episode.new(response["Data"]["Episode"])
+      if response["Data"]["Episode"]
+        Episode.new(response["Data"]["Episode"])
+      else
+        nil
+      end
     end
 
     def get_banners(series)
