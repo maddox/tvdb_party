@@ -38,6 +38,7 @@ module TvdbParty
 
     def get_banners(series)
       response = self.class.get("/#{@api_key}/series/#{series.id}/banners.xml")
+      return [] unless response["Banners"] && response["Banners"]["Banner"]
       case response["Banners"]["Banner"]
       when Array
         response["Banners"]["Banner"].map{|result| Banner.new(result)}
