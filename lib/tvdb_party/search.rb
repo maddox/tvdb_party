@@ -9,12 +9,15 @@ module TvdbParty
     
     def search(series_name)
       response = self.class.get("/GetSeries.php", {:query => {:seriesname => series_name}})
-      response["Data"]["Series"]
+      return [] unless response["Data"]
+      
       case response["Data"]["Series"]
       when Array
         response["Data"]["Series"]
       when Hash
         [response["Data"]["Series"]]
+      else
+        []
       end
     end
 
