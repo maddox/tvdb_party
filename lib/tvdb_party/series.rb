@@ -12,10 +12,10 @@ module TvdbParty
       @overview = options["Overview"]
       @network = options["Network"]
       @runtime = options["Runtime"]
-      @first_aired = Date.parse(options["FirstAired"])
+      @first_aired = Date.parse(options["FirstAired"]) if options["FirstAired"]
             
-      @genres = options["Genre"][1..-1].split("|")
-      @actors = options["Actors"][1..-1].split("|")
+      @genres = options["Genre"][1..-1].split("|") if options["Genre"]
+      @actors = options["Actors"][1..-1].split("|")if options["Actors"]
 
       if options["Rating"] && options["Rating"].size > 0
         @rating = options["Rating"].to_f
