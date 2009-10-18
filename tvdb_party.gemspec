@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tvdb_party}
-  s.version = "0.1.6"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jon Maddox"]
-  s.date = %q{2009-10-15}
+  s.date = %q{2009-10-17}
   s.description = %q{Simple Ruby library to talk to thetvdb.com's api}
   s.email = %q{jon@mustacheinc.com}
   s.extra_rdoc_files = [
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
      "lib/tvdb_party.rb",
      "lib/tvdb_party/banner.rb",
      "lib/tvdb_party/episode.rb",
+     "lib/tvdb_party/httparty_icebox.rb",
      "lib/tvdb_party/search.rb",
      "lib/tvdb_party/series.rb",
      "test/test_helper.rb",
