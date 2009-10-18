@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class TvdbPartyTest < Test::Unit::TestCase
-  context "tvdb search" do
+  context "tvdb" do
     setup do 
       @tvdb = TvdbParty::Search.new('A97A9243F8030477')
     end
@@ -14,16 +14,16 @@ class TvdbPartyTest < Test::Unit::TestCase
       should "have 0 results" do
         assert_equal 0, @results.size
       end
-
+    
     end
 
     context "search for real show" do
       setup do
-        @results = @tvdb.search("jojos")
+        @results = @tvdb.search("The Office US")
       end
       
-      should "have 0 results" do
-        assert_equal 2, @results.size
+      should "have 1 results" do
+        assert_equal 1, @results.size
       end
       
       context "get the series" do
@@ -34,9 +34,9 @@ class TvdbPartyTest < Test::Unit::TestCase
         should "have a series" do
           assert_equal TvdbParty::Series, @series.class
         end
-
+          
       end
-
+    
     end
   
   end

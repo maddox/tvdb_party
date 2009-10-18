@@ -1,6 +1,9 @@
 module TvdbParty
   class Search
     include HTTParty
+    include HTTParty::Icebox
+    cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
+    
     base_uri 'www.thetvdb.com/api'
 
     def initialize(the_api_key)
