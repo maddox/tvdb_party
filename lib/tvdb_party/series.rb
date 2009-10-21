@@ -12,7 +12,6 @@ module TvdbParty
       @overview = options["Overview"]
       @network = options["Network"]
       @runtime = options["Runtime"]
-      @first_aired = Date.parse(options["FirstAired"]) if options["FirstAired"]
             
       @genres = options["Genre"][1..-1].split("|") if options["Genre"]
       @actors = options["Actors"][1..-1].split("|")if options["Actors"]
@@ -22,6 +21,13 @@ module TvdbParty
       else
         @rating = 0
       end
+      
+      begin 
+        @first_aired = Date.parse(options["FirstAired"])
+      rescue
+        puts 'invalid date'
+      end
+      
     end
     
     def get_episode(season_number, episode_number)
