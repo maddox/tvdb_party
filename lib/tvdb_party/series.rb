@@ -13,8 +13,17 @@ module TvdbParty
       @network = options["Network"]
       @runtime = options["Runtime"]
             
-      @genres = options["Genre"][1..-1].split("|") if options["Genre"]
-      @actors = options["Actors"][1..-1].split("|")if options["Actors"]
+      if options["Genre"]
+        @genres = options["Genre"][1..-1].split("|")
+      else
+        @genres = []
+      end
+      
+      if options["Actors"]
+        @actors = options["Actors"][1..-1].split("|") 
+      else
+        @actors = []
+      end
 
       if options["Rating"] && options["Rating"].size > 0
         @rating = options["Rating"].to_f
