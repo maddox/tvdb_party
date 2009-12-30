@@ -34,10 +34,27 @@ class TvdbPartyTest < Test::Unit::TestCase
         should "have a series" do
           assert_equal TvdbParty::Series, @series.class
         end
-          
+
+        should "have a first episode" do
+          assert_equal "110413", @series.get_episode(1, 1).id
+        end
       end
     
     end
   
+  end
+  context "non english series" do
+    setup do
+      @tvdb = TvdbParty::Search.new('A97A9243F8030477', 'de')
+    end
+    context "search for real show" do
+      setup do
+        @results = @tvdb.search("Keine Gnade für Dad")
+      end
+
+      should "have 1 results" do
+        assert_equal 1, @results.size
+      end
+    end
   end
 end

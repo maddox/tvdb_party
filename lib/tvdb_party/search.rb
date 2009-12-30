@@ -2,16 +2,18 @@ module TvdbParty
   class Search
     include HTTParty
     include HTTParty::Icebox
+    attr_accessor :language
     cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
     
     base_uri 'www.thetvdb.com/api'
 
-    def initialize(the_api_key)
+    def initialize(the_api_key, language = 'en')
       @api_key = the_api_key
+      @language = language
     end
     
     def search(series_name)
-      response = self.class.get("/GetSeries.php", {:query => {:seriesname => series_name}})
+      response = self.class.get("/GetSeries.php", {:query => {:seriesname => series_name, :language => @language}})
       return [] unless response["Data"]
       
       case response["Data"]["Series"]
@@ -33,8 +35,8 @@ module TvdbParty
       end
     end
     
-    def get_episode(series, season_number, episode_number)
-      response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/en.xml")
+    def get_episode(series, season_number, episode_number, language = self.language)
+      response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/#{language}.xml")
       if response["Data"] && response["Data"]["Episode"]
         Episode.new(response["Data"]["Episode"])
       else
