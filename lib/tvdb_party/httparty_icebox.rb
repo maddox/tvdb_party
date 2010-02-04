@@ -168,7 +168,7 @@ module HTTParty #:nodoc:
 
       # ===== Store objects in memory
       #
-      Struct.new("Response", :code, :body, :headers) { def to_s; self.body; end }
+      Struct.new("IceboxResponse", :code, :body, :headers) { def to_s; self.body; end }
       class MemoryStore < AbstractStore
         def initialize(options={})
           super; @store = {}; self
