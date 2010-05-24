@@ -13,5 +13,10 @@ module TvdbParty
     def url
       "http://thetvdb.com/banners/" + @path
     end
+
+    def thumb_url
+      "http://thetvdb.com/banners/_cache/" + @path
+    end
+
   end
 end
