@@ -35,6 +35,14 @@ class TvdbPartyTest < Test::Unit::TestCase
           assert_equal TvdbParty::Series, @series.class
         end
 
+        should "have actors" do
+          assert_not_equal 0, @series.actors.size
+        end
+
+        should "have actual Actors" do
+          assert_equal TvdbParty::Actor, @series.actors.first.class
+        end
+
         should "have a first episode" do
           assert_equal "110413", @series.get_episode(1, 1).id
         end

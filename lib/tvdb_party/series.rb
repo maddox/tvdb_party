@@ -19,12 +19,6 @@ module TvdbParty
         @genres = []
       end
       
-      if options["Actors"]
-        @actors = options["Actors"][1..-1].split("|") 
-      else
-        @actors = []
-      end
-
       if options["Rating"] && options["Rating"].size > 0
         @rating = options["Rating"].to_f
       else
@@ -36,7 +30,6 @@ module TvdbParty
       rescue
         puts 'invalid date'
       end
-      
     end
     
     def get_episode(season_number, episode_number)
@@ -69,6 +62,10 @@ module TvdbParty
 
     def seasons
       @seasons ||= client.get_seasons(self) 
+    end
+
+    def actors
+      @actors ||= client.get_actors(self) 
     end
     
     def season(season_number)
