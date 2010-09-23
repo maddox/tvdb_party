@@ -11,7 +11,7 @@ begin
     gem.homepage = "http://github.com/maddox/tvdb_party"
     gem.authors = ["Jon Maddox"]
     gem.add_development_dependency "thoughtbot-shoulda"
-    gem.add_dependency('httparty', '>= 0.4.3')
+    gem.add_dependency('httparty', '>= 0.6.1')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
