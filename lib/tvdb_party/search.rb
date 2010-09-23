@@ -1,10 +1,9 @@
 module TvdbParty
   class Search
     include HTTParty
-    # include HTTParty::Icebox
+    include HTTParty::Icebox
     attr_accessor :language
-    format :xml
-    # cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
+    cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
     
     base_uri 'www.thetvdb.com/api'
 
@@ -38,7 +37,6 @@ module TvdbParty
     
     def get_episode(series, season_number, episode_number, language = self.language)
       response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/#{language}.xml").parsed_response
-      puts response.inspect
       if response["Data"] && response["Data"]["Episode"]
         Episode.new(response["Data"]["Episode"])
       else
