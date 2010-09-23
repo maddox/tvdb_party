@@ -17,6 +17,17 @@ class TvdbPartyTest < Test::Unit::TestCase
     
     end
 
+    context "search for episode that doesn't exist" do
+      setup do
+        @show = @tvdb.get_series_by_id(75700)
+      end
+      
+      should "have handle 404 on episode query" do
+        assert_equal nil, @show.get_episode(1, 17)
+      end
+    
+    end
+
     context "search for real show" do
       setup do
         @results = @tvdb.search("The Office US")
