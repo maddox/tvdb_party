@@ -38,7 +38,7 @@ module TvdbParty
     def get_episode_by_id(episode_id, language = self.language)
       response = self.class.get("/#{@api_key}/episodes/#{episode_id}/#{language}.xml").parsed_response
       if response["Data"] && response["Data"]["Episode"]
-        Series.new(self, response["Data"]["Episode"])
+        Episode.new(self, response["Data"]["Episode"])
       else
         nil
       end
@@ -47,7 +47,7 @@ module TvdbParty
     def get_episode(series, season_number, episode_number, language = self.language)
       response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/#{language}.xml").parsed_response
       if response["Data"] && response["Data"]["Episode"]
-        Episode.new(response["Data"]["Episode"])
+        Episode.new(self, response["Data"]["Episode"])
       else
         nil
       end
