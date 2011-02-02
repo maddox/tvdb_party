@@ -45,6 +45,19 @@ module TvdbParty
       end
     end
 
+    def get_all_episodes(series, language = self.language)
+      response = self.class.get("/#{@api_key}/series/#{series.id}/all/#{@language}.xml")
+      return [] unless response["Data"] && response["Data"]["Episode"]
+      case response["Data"]["Episode"]
+      when Array
+        response["Data"]["Episode"].map{|result| Episode.new(result)}
+      when Hash
+        [Episode.new(response["Data"]["Episode"])]
+      else
+        []
+      end
+    end
+
     def get_actors(series)
       response = self.class.get("/#{@api_key}/series/#{series.id}/actors.xml").parsed_response
       if response["Actors"] && response["Actors"]["Actor"]
