@@ -76,5 +76,17 @@ module TvdbParty
       seasons.detect{|s| s.number == season_number}
     end
 
+    def is_favorite?(account_id)
+      client.get_favorites(account_id).include? self.id
+    end
+
+    def favorite!(account_id)
+      client.add_favorite(account_id, self.id)
+    end
+
+    def unfavorite!(account_id)
+      client.remove_favorite(account_id, self.id)
+    end
+
   end
 end
