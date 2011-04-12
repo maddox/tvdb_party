@@ -25,6 +25,15 @@ get the series
 <code>puts west_wing.name</code>
 => The West Wing
 
+check or manage its favourite status
+<code>west_wing.is_favorite?("YOURACCOUNTID")</code>
+=> true/false
+<code>west_wing.favorite!("YOURACCOUNTID")</code>
+<code>west_wing.unfavorite?("YOURACCOUNTID")</code>
+<code>tvdb.get_favorites("YOURACCOUNTID")</code>
+=> [series_id_1, series_id_2, ...]
+Note: due to the HTTParty Icebox (caching), your favorite list may not reflect correctly after an update. The the cache expires after 120s at the time of writing.
+
 get an episode
 <code>episode_22 = west_wing.get_episode(1, 22)</code>
 <code>puts episode_22.name</code>
