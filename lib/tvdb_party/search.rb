@@ -44,7 +44,7 @@ module TvdbParty
         nil
       end
     end
-    
+
     def get_episode(series, season_number, episode_number, language = self.language)
       response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/#{language}.xml").parsed_response
       if response["Data"] && response["Data"]["Episode"]
@@ -59,7 +59,7 @@ module TvdbParty
       return [] unless response["Data"] && response["Data"]["Episode"]
       case response["Data"]["Episode"]
       when Array
-        response["Data"]["Episode"].map{|result| Episode.new(result)}
+        response["Data"]["Episode"].map{|result| Episode.new(self, result)}
       when Hash
         [Episode.new(response["Data"]["Episode"])]
       else
