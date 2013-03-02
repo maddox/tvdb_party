@@ -59,9 +59,9 @@ module TvdbParty
       return [] unless response["Data"] && response["Data"]["Episode"]
       case response["Data"]["Episode"]
       when Array
-        response["Data"]["Episode"].map{|result| Episode.new(result)}
+        response["Data"]["Episode"].map{|result| Episode.new(self, result)}
       when Hash
-        [Episode.new(response["Data"]["Episode"])]
+        [Episode.new(self, response["Data"]["Episode"])]
       else
         []
       end
