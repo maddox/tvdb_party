@@ -5,7 +5,7 @@ module TvdbParty
     attr_accessor :language
     cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
 
-    base_uri 'www.thetvdb.com/api'
+    base_uri 'thetvdb.com/api'
 
     def initialize(the_api_key, language = 'en')
       @api_key = the_api_key
