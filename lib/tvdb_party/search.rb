@@ -3,13 +3,17 @@ module TvdbParty
     include HTTParty
     include HTTParty::Icebox
     attr_accessor :language
-    cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
 
     base_uri 'www.thetvdb.com/api'
 
-    def initialize(the_api_key, language = 'en')
+    def initialize(the_api_key, language = 'en', cache_options = {})
       @api_key = the_api_key
       @language = language
+
+      if cache_options.keys.size > 0
+        self.class.cache cache_options
+      end
+
     end
 
     def search(series_name)
