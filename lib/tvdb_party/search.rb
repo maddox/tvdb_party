@@ -41,6 +41,13 @@ module TvdbParty
       end
     end
 
+    def get_seasons(series, language = self.language)
+      seasons = get_all_episodes(series, language)
+      seasons.select! { |episode| episode.season_number.to_i > 0 }
+      seasons.map!(&:season_number).uniq!
+      seasons
+    end
+
     def get_episode_by_id(episode_id, language = self.language)
       response = self.class.get("/#{@api_key}/episodes/#{episode_id}/#{language}.xml").parsed_response
       if response["Data"] && response["Data"]["Episode"]
