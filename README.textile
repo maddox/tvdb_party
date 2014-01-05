@@ -21,7 +21,7 @@ search for your series
 <code>results = tvdb.search('the west wing')</code>
 
 get the series
-<code>west_wing = tvdb.get_series_by_id(results["seriesid"])</code>
+<code>west_wing = tvdb.get_series_by_id(results.first["seriesid"])</code>
 <code>puts west_wing.name</code>
 => The West Wing
 
