@@ -15,7 +15,7 @@ module TvdbParty
       @writer = options["Writer"]
       @series_id = options["seriesid"]
       if options["GuestStars"]
-        @guest_stars = options["GuestStars"][1..-1].split("|")
+        @guest_stars = options["GuestStars"].split("|").reject(&:empty?)
       else
         @guest_stars = []
       end
