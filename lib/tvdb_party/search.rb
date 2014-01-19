@@ -80,6 +80,13 @@ module TvdbParty
       end
     end
 
+     def get_seasons(series, language = self.language)
+        seasons = get_all_episodes(series, language)
+        seasons.select! { |episode| episode.season_number.to_i > 0 }
+        seasons.map!(&:season_number).uniq!
+        seasons
+      end
+
     def get_banners(series)
       response = self.class.get("/#{@api_key}/series/#{series.id}/banners.xml").parsed_response
       return [] unless response["Banners"] && response["Banners"]["Banner"]
