@@ -2,7 +2,7 @@ module TvdbParty
   class Series
     attr_reader :client
     attr_accessor :id, :name, :overview, :seasons, :first_aired, :genres, :network, :rating, :runtime,
-                  :actors, :banners, :air_time, :imdb_id, :ratingcount, :status
+                  :actors, :banners, :air_time, :imdb_id, :ratingcount, :status :airs_dayofweek
 
     def initialize(client, options={})
       @client = client
@@ -14,6 +14,7 @@ module TvdbParty
       @air_time = options['Airs_Time'] if options['Airs_Time']
       @imdb_id = options["IMDB_ID"]
       @status = options["Status"] if options["Status"]
+      @airs_dayofweek = options["Airs_DayOfWeek"]
 
       if options["Genre"]
         @genres = options["Genre"][1..-1].split("|")
