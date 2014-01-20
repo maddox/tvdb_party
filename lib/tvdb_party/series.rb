@@ -31,6 +31,7 @@ module TvdbParty
         @ratingcount = options["RatingCount"].to_f
       else
         @ratingcount = 0
+      end
 
       begin
         @first_aired = Date.parse(options["FirstAired"])
