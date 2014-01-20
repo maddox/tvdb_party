@@ -60,6 +60,10 @@ class TvdbPartyTest < Test::Unit::TestCase
           assert_equal "110413", @series.get_episode(1, 1).id
         end
 
+        should "have seasons" do
+          assert_not_equal 0, @series.seasons.size
+        end
+
         should "have imdb id if available" do
           assert_equal 'tt0386676', @series.imdb_id
         end
