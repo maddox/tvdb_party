@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Jon Maddox"]
-  s.date = "2013-04-26"
+  s.authors = ["David Pan"]
+  s.date = "2014-01-20"
   s.description = "Simple Ruby library to talk to thetvdb.com's api"
   s.email = "jon@mustacheinc.com"
   s.extra_rdoc_files = [
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
     "test/tvdb_party_test.rb",
     "tvdb_party.gemspec"
   ]
-  s.homepage = "http://github.com/maddox/tvdb_party"
+  s.homepage = "http://github.com/davidpan/tvdb_party"
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.23"
   s.summary = "Simple Ruby library to talk to thetvdb.com's api"
