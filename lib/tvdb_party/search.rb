@@ -74,7 +74,11 @@ module TvdbParty
     def get_actors(series)
       response = self.class.get("/#{@api_key}/series/#{series.id}/actors.xml").parsed_response
       if response["Actors"] && response["Actors"]["Actor"]
-        response["Actors"]["Actor"].collect {|a| Actor.new(a)}
+        if response["Actors"]["Actor"].class == Hash
+          [Actor.new(response["Actors"]["Actor"])]
+        else
+          response["Actors"]["Actor"].collect {|a| Actor.new(a)}
+        end
       else
         nil
       end
