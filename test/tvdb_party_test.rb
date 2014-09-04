@@ -63,6 +63,18 @@ class TvdbPartyTest < Test::Unit::TestCase
         should "have imdb id if available" do
           assert_equal 'tt0386676', @series.imdb_id
         end
+
+        should "have air day if available" do
+          assert_equal 'Thursday', @series.air_day
+        end
+
+        should "have status if available" do
+          assert_equal 'Ended', @series.status
+        end
+
+        should "have certification if available" do
+          assert_equal 'TV-14', @series.certification
+        end
       end
     
     end
