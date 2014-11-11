@@ -14,7 +14,7 @@ module TvdbParty
       @air_time = options['Airs_Time'] if options['Airs_Time']
       @imdb_id = options["IMDB_ID"]
       @content_rating = options["ContentRating"]
-      @status = options["ContentRating"]
+      @status = options["Status"]
 
       if options["Genre"]
         @genres = options["Genre"][1..-1].split("|")
