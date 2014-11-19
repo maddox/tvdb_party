@@ -17,7 +17,7 @@ module TvdbParty
       @status = options["Status"]
 
       if options["Genre"]
-        @genres = options["Genre"][1..-1].split("|")
+        @genres = options["Genre"].split("|").reject(&:empty?)
       else
         @genres = []
       end
