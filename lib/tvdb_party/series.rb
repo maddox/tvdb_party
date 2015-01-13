@@ -1,7 +1,7 @@
 module TvdbParty
   class Series
     attr_reader :client
-    attr_accessor :id, :name, :overview, :seasons, :first_aired, :genres, :network, :rating, :runtime,
+    attr_accessor :id, :name, :overview, :seasons, :first_aired, :genres, :network, :rating, :rating_count, :runtime,
                   :actors, :banners, :air_time, :imdb_id, :content_rating, :status
 
     def initialize(client, options={})
@@ -26,6 +26,12 @@ module TvdbParty
         @rating = options["Rating"].to_f
       else
         @rating = 0
+      end
+
+      if options["RatingCount"] && options["RatingCount"].size > 0
+        @rating_count = options["RatingCount"].to_f
+      else
+        @rating_count = 0
       end
 
       begin
