@@ -16,6 +16,7 @@ module TvdbParty
       @imdb_id = options["IMDB_ID"]
       @status = options['Status']
       @certification = options['ContentRating']
+      @language = options['Language'] rescue nil
 
       if options["Genre"]
         @genres = options["Genre"][1..-1].split("|")
