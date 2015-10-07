@@ -30,6 +30,14 @@ module TvdbParty
       end
     end
 
+    def get_changes since
+      stamp = since.to_i # Get timestamp
+      result = self.class.get("/Updates.php?type=all&time=#{stamp}")['Items']
+      { :series => result['Series'],
+        :episodes => result['Episode'],
+        :time => result['Time'] }
+    end
+
     def get_series_by_id(series_id, language = self.language)
       response = self.class.get("/#{@api_key}/series/#{series_id}/#{language}.xml").parsed_response
 
@@ -74,7 +82,11 @@ module TvdbParty
     def get_actors(series)
       response = self.class.get("/#{@api_key}/series/#{series.id}/actors.xml").parsed_response
       if response["Actors"] && response["Actors"]["Actor"]
-        response["Actors"]["Actor"].collect {|a| Actor.new(a)}
+        if response["Actors"]["Actor"].class == Hash
+          [Actor.new(response["Actors"]["Actor"])]
+        else
+          response["Actors"]["Actor"].collect {|a| Actor.new(a)}
+        end
       else
         nil
       end
