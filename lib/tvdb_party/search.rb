@@ -16,8 +16,8 @@ module TvdbParty
 
     end
 
-    def search(series_name)
-      response = self.class.get("/GetSeries.php", {:query => {:seriesname => series_name, :language => @language}}).parsed_response
+    def search(series_name, language = self.language)
+      response = self.class.get("/GetSeries.php", {:query => {:seriesname => series_name, :language => language}}).parsed_response
       return [] unless response["Data"]
 
       case response["Data"]["Series"]
