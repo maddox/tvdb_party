@@ -92,6 +92,7 @@ module TvdbParty
           hash[ var.to_s.gsub('@','').to_sym ] = v
       end
       hash.delete(:client)
+      hash.delete(:banners)
       return hash
     end
 
