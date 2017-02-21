@@ -37,7 +37,6 @@ module TvdbParty
       begin
         @first_aired = Date.parse(options["FirstAired"])
       rescue
-        puts 'invalid date'
       end
     end
 
@@ -83,6 +82,18 @@ module TvdbParty
 
     def season(season_number)
       seasons.detect{|s| s.number == season_number}
+    end
+
+    def to_h
+      hash = {}
+      self.instance_variables.each do | var |
+          #turn episode object into hash
+          v = self.instance_variable_get( var )
+          hash[ var.to_s.gsub('@','').to_sym ] = v
+      end
+      hash.delete(:client)
+      hash.delete(:banners)
+      return hash
     end
 
   end
