@@ -1,8 +1,8 @@
 module TvdbParty
   class Episode
     attr_reader :client
-    attr_accessor :id, :season_number, :number, :name, :overview, :air_date, :thumb, :guest_stars, :director, :writer, :rating, :rating_count
-    
+    attr_accessor :id, :series_id, :season_number, :number, :name, :overview, :air_date, :thumb, :guest_stars, :director, :writer, :rating, :rating_count
+
     def initialize(client, options={})
       @client = client
       @id = options["id"]
@@ -33,13 +33,13 @@ module TvdbParty
         @rating_count = 0
       end
 
-      begin 
+      begin
         @air_date = Date.parse(options["FirstAired"])
       rescue
         puts 'invalid date'
       end
     end
-    
+
     def series
       client.get_series_by_id(@series_id)
     end
