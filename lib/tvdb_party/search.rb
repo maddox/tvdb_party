@@ -4,7 +4,7 @@ module TvdbParty
     include HTTParty::Icebox
     attr_accessor :language
 
-    base_uri 'www.thetvdb.com/api'
+    base_uri 'thetvdb.com/api'
 
     def initialize(the_api_key, language = 'en', cache_options = {})
       @api_key = the_api_key
@@ -65,7 +65,7 @@ module TvdbParty
       when Array
         response["Data"]["Episode"].map{|result| Episode.new(self, result)}
       when Hash
-        [Episode.new(response["Data"]["Episode"])]
+        [Episode.new(self, response["Data"]["Episode"])]
       else
         []
       end
@@ -91,6 +91,26 @@ module TvdbParty
       else
         []
       end
+    end
+
+    def get_favorites(account_id)
+      response = self.class.get("/User_Favorites.php?accountid=#{account_id}")
+      return [] unless response["Favorites"] && response["Favorites"]["Series"]
+
+      case (series_ids = response["Favorites"]["Series"])
+      when Array; series_ids
+      else; [series_ids]
+      end
+    end
+
+    def add_favorite(account_id, series_id)
+      response = self.class.get("/User_Favorites.php?accountid=#{account_id}&type=add&seriesid=#{series_id}")
+      response.response.is_a? Net::HTTPOK
+    end
+
+    def remove_favorite(account_id, series_id)
+      response = self.class.get("/User_Favorites.php?accountid=#{account_id}&type=remove&seriesid=#{series_id}")
+      response.response.is_a? Net::HTTPOK
     end
 
   end

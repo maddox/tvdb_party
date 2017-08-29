@@ -66,6 +66,12 @@ class TvdbPartyTest < Test::Unit::TestCase
       end
     
     end
+
+    context "managing favorites" do
+      should "return an array" do
+        assert_equal Array, @tvdb.get_favorites("foobar").class
+      end
+    end
   
   end
   context "non english series" do
