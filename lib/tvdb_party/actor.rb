@@ -8,11 +8,11 @@ module TvdbParty
       @role = options["Role"]
       @image = options["Image"]
     end
-    
+
     def image_url
       return nil unless @image
-      "http://thetvdb.com/banners/" + @image
+      "https://thetvdb.com/banners/" + @image
     end
-    
+
   end
 end
