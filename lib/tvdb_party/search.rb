@@ -4,7 +4,7 @@ module TvdbParty
     include HTTParty::Icebox
     attr_accessor :language
 
-    base_uri 'www.thetvdb.com/api'
+    base_uri 'https://www.thetvdb.com/api'
 
     def initialize(the_api_key, language = 'en', cache_options = {})
       @api_key = the_api_key
