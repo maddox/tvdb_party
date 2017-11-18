@@ -59,7 +59,11 @@ module TvdbParty
     end
 
     def get_all_episodes(series, language = self.language)
-      response = self.class.get("/#{@api_key}/series/#{series.id}/all/#{language}.xml").parsed_response
+      get_episodes_for_series_id(series.id, language)
+    end
+
+    def get_episodes_for_series_id(series_id, language = self.language)
+      response = self.class.get("/#{@api_key}/series/#{series_id}/all/#{language}.xml").parsed_response
       return [] unless response["Data"] && response["Data"]["Episode"]
       case response["Data"]["Episode"]
       when Array
