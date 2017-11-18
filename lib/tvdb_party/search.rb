@@ -85,7 +85,11 @@ module TvdbParty
     end
 
     def get_banners(series)
-      response = self.class.get("/#{@api_key}/series/#{series.id}/banners.xml").parsed_response
+      get_banners_for_series_id(series.id)
+    end
+
+    def get_banners_for_series_id(series_id)
+      response = self.class.get("/#{@api_key}/series/#{series_id}/banners.xml").parsed_response
       return [] unless response["Banners"] && response["Banners"]["Banner"]
       case response["Banners"]["Banner"]
       when Array
