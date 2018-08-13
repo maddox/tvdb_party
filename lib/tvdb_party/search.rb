@@ -34,16 +34,25 @@ module TvdbParty
       response = self.class.get("/#{@api_key}/series/#{series_id}/#{language}.xml").parsed_response
 
       if response["Data"] && response["Data"]["Series"]
-        Series.new(self, response["Data"]["Series"])
+        this = self
+        Series.new(this, response["Data"]["Series"])
       else
         nil
       end
     end
 
+    def get_seasons(series, language = self.language)
+      seasons = get_all_episodes(series, language)
+      seasons.select! { |episode| episode.season_number.to_i > 0 }
+      seasons.map!(&:season_number).uniq!
+      seasons
+    end
+
     def get_episode_by_id(episode_id, language = self.language)
       response = self.class.get("/#{@api_key}/episodes/#{episode_id}/#{language}.xml").parsed_response
       if response["Data"] && response["Data"]["Episode"]
-        Episode.new(self, response["Data"]["Episode"])
+        this = self
+        Episode.new(this, response["Data"]["Episode"])
       else
         nil
       end
@@ -52,7 +61,8 @@ module TvdbParty
     def get_episode(series, season_number, episode_number, language = self.language)
       response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/#{language}.xml").parsed_response
       if response["Data"] && response["Data"]["Episode"]
-        Episode.new(self, response["Data"]["Episode"])
+        this = self
+        Episode.new(this, response["Data"]["Episode"])
       else
         nil
       end
@@ -67,7 +77,8 @@ module TvdbParty
       return [] unless response["Data"] && response["Data"]["Episode"]
       case response["Data"]["Episode"]
       when Array
-        response["Data"]["Episode"].map{|result| Episode.new(self, result)}
+        this = self
+        response["Data"]["Episode"].map{|result| Episode.new(this, result)}
       when Hash
         [Episode.new(response["Data"]["Episode"])]
       else
